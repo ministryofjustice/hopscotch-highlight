@@ -1,8 +1,13 @@
 {
   "name": "hopscotch-highlight",
   "description": "Highlight your features in Hopscotch",
-  "main": "dist/hopscotch-highlight.js",
-  "version": "0.0.0",
-  "dependencies": {}
+  "main": [
+    "./src/hopscotch-highlight.js"
+    "./src/hopscotch-highlight.scss"
+  ],
+  "version": "0.0.1",
+  "dependencies": {
+    "hopscotch": "~0.2.5",
+    "jquery": "~2.1.4"
+  }
 }
-
