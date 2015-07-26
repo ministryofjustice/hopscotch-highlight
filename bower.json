@@ -5,7 +5,7 @@
     "./src/hopscotch-highlight.js"
     "./src/hopscotch-highlight.scss"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "hopscotch": "~0.2.5",
     "jquery": "~2.1.4"
