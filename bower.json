@@ -8,6 +8,6 @@
   "version": "0.0.3",
   "dependencies": {
     "hopscotch": "~0.2.5",
-    "jquery": "~2.1.4"
+    "jquery": "~1.11"
   }
 }
