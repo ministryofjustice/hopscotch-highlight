@@ -2,8 +2,8 @@
   "name": "hopscotch-highlight",
   "description": "Highlight your features in Hopscotch",
   "main": [
-    "./src/hopscotch-highlight.js",
-    "./src/hopscotch-highlight.scss"
+    "./src/javascripts/hopscotch-highlight.js",
+    "./src/stylesheets/hopscotch-highlight.scss"
   ],
   "version": "0.0.3",
   "dependencies": {
