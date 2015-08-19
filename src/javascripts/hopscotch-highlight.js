@@ -66,8 +66,11 @@
   window.onresize = function() {
     // reposition highlight
     var step = hopscotch.highlight.getStep();
-    var target = hopscotch.highlight.getTarget(step);
-    hopscotch.highlight.positionHighlight(target, step.table);
+
+    if (step) {
+      var target = hopscotch.highlight.getTarget(step);
+      hopscotch.highlight.positionHighlight(target, step.table);
+    }
   };
 
 })();
