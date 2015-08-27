@@ -4,7 +4,12 @@
 
     getStep: function() {
       var stepNo = hopscotch.getCurrStepNum();
-      return window.tour.steps[stepNo];
+
+      if (stepNo === undefined) {
+        return;
+      } else {
+        return window.tour.steps[stepNo];
+      }
     },
 
     getTarget: function(step) {
