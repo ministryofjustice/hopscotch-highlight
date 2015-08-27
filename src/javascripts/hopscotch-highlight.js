@@ -33,7 +33,6 @@
     },
 
     showHighlight: function(el, table) {
-
       hopscotch.highlight.positionHighlight(el, table);
 
       // Highlight entire table column
@@ -47,7 +46,8 @@
     },
 
     positionHighlight: function(el, table) {
-      var h = $('<div/>').attr('id', 'hopscotch-highlight').appendTo('body');
+      var id = 'hopscotch-highlight';
+      var h = $('#' + id).length ? $('#' + id) : $('<div/>').attr('id', id);
 
       h.css({
         'top': el.offset().top,
@@ -60,6 +60,8 @@
         // Resize highlight to column height
         h.css('height', el.closest('table').height());
       }
+
+      h.appendTo('body');
     },
 
     showOverlay: function() {
@@ -72,7 +74,7 @@
     // reposition highlight
     var step = hopscotch.highlight.getStep();
 
-    if (step) {
+    if (step && hopscotch.isActive) {
       var target = hopscotch.highlight.getTarget(step);
       hopscotch.highlight.positionHighlight(target, step.table);
     }
