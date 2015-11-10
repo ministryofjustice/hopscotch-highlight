@@ -1,83 +1,87 @@
-(function(){
+/* global exports, require */
 
-  hopscotch.highlight = {
+'use strict';
 
-    getStep: function() {
-      var stepNo = hopscotch.getCurrStepNum();
+var hopscotch = require('hopscotch');
+var $ = require('jquery');
 
-      if (stepNo === undefined) {
-        return;
-      } else {
-        return window.tour.steps[stepNo];
-      }
-    },
 
-    getTarget: function(step) {
-      var target = step.target;
-      return $(typeof target === 'string' ? '#' + target : target);
-    },
+exports.hopscotchHighlight = {
 
-    show: function() {
-      var step = hopscotch.highlight.getStep();
-      var target = hopscotch.highlight.getTarget(step);
+  getStep: function() {
+    var stepNo = hopscotch.getCurrStepNum();
 
-      target.addClass('hopscotch-highlighted');
+    if (stepNo === undefined) {
+      return;
+    } else {
+      return window.tour.steps[stepNo];
+    }
+  },
 
-      hopscotch.highlight.showHighlight(target, step.table);
-      hopscotch.highlight.showOverlay();
-    },
+  getTarget: function(step) {
+    var target = step.target;
+    return $(typeof target === 'string' ? '#' + target : target);
+  },
 
-    remove: function() {
-      $('.hopscotch-highlighted').removeClass('hopscotch-highlighted');
-      $('#hopscotch-overlay, #hopscotch-highlight').remove();
-    },
+  show: function() {
+    var step = this.getStep();
+    var target = this.getTarget(step);
 
-    showHighlight: function(el, table) {
-      hopscotch.highlight.positionHighlight(el, table);
+    target.addClass('hopscotch-highlighted');
 
-      // Highlight entire table column
-      if (typeof table !== 'undefined') {
-        // Bring each cell to foreground
-        var i = el.index();
-        el.closest('table').find('tbody tr').each(function() {
-          $(this).find('td').eq(i).addClass('hopscotch-highlighted');
-        });
-      }
-    },
+    this.showHighlight(target, step.table);
+    this.showOverlay();
+  },
 
-    positionHighlight: function(el, table) {
-      var id = 'hopscotch-highlight';
-      var h = $('#' + id).length ? $('#' + id) : $('<div/>').attr('id', id);
+  remove: function() {
+    $('.hopscotch-highlighted').removeClass('hopscotch-highlighted');
+    $('#hopscotch-overlay, #hopscotch-highlight').remove();
+  },
 
-      h.css({
-        'top': el.offset().top,
-        'left': el.offset().left,
-        'width': el.outerWidth(),
-        'height': el.outerHeight()
+  showHighlight: function(el, table) {
+    this.positionHighlight(el, table);
+
+    // Highlight entire table column
+    if (typeof table !== 'undefined') {
+      // Bring each cell to foreground
+      var i = el.index();
+      el.closest('table').find('tbody tr').each(function() {
+        $(this).find('td').eq(i).addClass('hopscotch-highlighted');
       });
+    }
+  },
 
-      if (typeof table !== 'undefined') {
-        // Resize highlight to column height
-        h.css('height', el.closest('table').height());
-      }
+  positionHighlight: function(el, table) {
+    var id = 'hopscotch-highlight';
+    var h = $('#' + id).length ? $('#' + id) : $('<div/>').attr('id', id);
 
-      h.appendTo('body');
-    },
+    h.css({
+      'top': el.offset().top,
+      'left': el.offset().left,
+      'width': el.outerWidth(),
+      'height': el.outerHeight()
+    });
 
-    showOverlay: function() {
-      $('<div/>').attr('id', 'hopscotch-overlay').appendTo('body');
+    if (typeof table !== 'undefined') {
+      // Resize highlight to column height
+      h.css('height', el.closest('table').height());
     }
 
-  };
+    h.appendTo('body');
+  },
 
-  window.onresize = function() {
-    // reposition highlight
-    var step = hopscotch.highlight.getStep();
+  showOverlay: function() {
+    $('<div/>').attr('id', 'hopscotch-overlay').appendTo('body');
+  }
 
-    if (step && hopscotch.isActive) {
-      var target = hopscotch.highlight.getTarget(step);
-      hopscotch.highlight.positionHighlight(target, step.table);
-    }
-  };
+};
 
-})();
+window.onresize = function() {
+  // reposition highlight
+  var step = this.getStep();
+
+  if (step && hopscotch.isActive) {
+    var target = this.getTarget(step);
+    this.positionHighlight(target, step.table);
+  }
+};
