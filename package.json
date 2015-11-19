@@ -1,6 +1,6 @@
 {
   "name": "hopscotch-highlight",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "Simple object extension for Hopscotch to highlight the current feature",
   "main": "src/javascripts/hopscotch-highlight.js",
   "scripts": {
