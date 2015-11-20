@@ -72,16 +72,16 @@ exports.hopscotchHighlight = {
 
   showOverlay: function() {
     $('<div/>').attr('id', 'hopscotch-overlay').appendTo('body');
-  }
+  },
 
-};
+  onresize: function() {
+    // reposition highlight
+    var step = this.getStep();
 
-window.onresize = function() {
-  // reposition highlight
-  var step = this.getStep();
+    if (step && hopscotch.isActive) {
+      var target = this.getTarget(step);
+      this.positionHighlight(target, step.table);
+    }
 
-  if (step && hopscotch.isActive) {
-    var target = this.getTarget(step);
-    this.positionHighlight(target, step.table);
   }
 };
